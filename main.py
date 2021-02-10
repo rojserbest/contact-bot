@@ -91,4 +91,9 @@ def _____(__, _):
             _.reply("Could not send the message.")
 
 
+@bot.on_message(filters.new_chat_member & ~ from_group)
+def ______(__, _):
+    _.chat.leave()
+
+
 idle()
