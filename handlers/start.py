@@ -1,16 +1,17 @@
-from telegram.ext import CommandHandler, Filters
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import CallbackContext, CommandHandler, Filters
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 
 from .ban import not_banned_users
-from strings import get_string, get_languages
+from strings import get_string, get_languages, lang_
 
 
 @not_banned_users
-def start(update, context):
+@lang_
+def start(update: Update, context: CallbackContext, lang: str):
     keyboard = []
 
     for language in get_languages():
-        if language != context.bot_data.get(update.message.chat.id, {}).get("lang", "en"):
+        if language != lang:
             keyboard.append(
                 [
                     InlineKeyboardButton(
@@ -21,14 +22,10 @@ def start(update, context):
             )
 
     update.effective_message.reply_text(
-        get_string("start", context.bot_data.get(
-            update.effective_chat.id, {}
-        ).get(
-            "lang",
-            "en"
-        )),
+        get_string("start", lang),
         reply_markup=InlineKeyboardMarkup(
-            keyboard) if keyboard != [[]] else None
+            keyboard
+        ) if keyboard != [[]] else None
     )
 
 

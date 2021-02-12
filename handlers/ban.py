@@ -1,11 +1,12 @@
-from telegram.ext import CommandHandler
+from telegram.ext import CallbackContext, CommandHandler
+from telegram import Update
 
 from database import bans as db
-from strings import get_string
+from strings import get_string, _lang
 from config import CHAT_FILTER
 
 
-def ban(update, context):
+def ban(update: Update, context: CallbackContext) -> None:
     message_ = update.message.reply_to_message
 
     if message_.from_user.id == context.bot.id:
@@ -21,12 +22,7 @@ def ban(update, context):
         context.bot.send_message(
             chat_id_, get_string(
                 "ban",
-                context.bot_data.get(
-                    chat_id_, {}
-                ).get(
-                    "lang",
-                    "en"
-                )
+                _lang(context, chat_id_)
             )
         )
 
@@ -46,12 +42,7 @@ def unban(update, context):
         context.bot.send_message(
             chat_id_, get_string(
                 "unban",
-                context.bot_data.get(
-                    chat_id_, {}
-                ).get(
-                    "lang",
-                    "en"
-                )
+                _lang(context, chat_id_)
             )
         )
 
