@@ -21,7 +21,12 @@ def start(update, context):
             )
 
     update.effective_message.reply_text(
-        get_string("start", context.chat_data.get("lang")),
+        get_string("start", context.bot_data.get(
+            chat_id_, {}
+        ).get(
+            "lang",
+            "en"
+        )),
         reply_markup=InlineKeyboardMarkup(
             keyboard) if keyboard != [[]] else None
     )

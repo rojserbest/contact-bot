@@ -27,7 +27,12 @@ def set_lang(update, context):
 
     context.bot.send_message(
         update.effective_chat.id,
-        get_string("start", context.chat_data.get("lang")),
+        get_string("start", context.bot_data.get(
+            chat_id_, {}
+        ).get(
+            "lang",
+            "en"
+        )),
         reply_markup=InlineKeyboardMarkup(
             keyboard) if keyboard != [[]] else None
     )
