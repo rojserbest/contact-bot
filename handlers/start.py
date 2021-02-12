@@ -29,6 +29,6 @@ def start(update, context):
 
 __handlers__ = [
     [
-        CommandHandler("start", start, filters=Filters.private)
+        CommandHandler("start", start, filters=Filters.chat_type.private)
     ]
 ]
