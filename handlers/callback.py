@@ -15,7 +15,7 @@ def set_lang(update, context):
     keyboard = []
 
     for language in get_languages():
-        if language != context.bot_data.get(update.message.chat.id, {}).get("lang", "en"):
+        if language != context.bot_data.get(update.effective_chat.id, {}).get("lang", "en"):
             keyboard.append(
                 [
                     InlineKeyboardButton(
