@@ -2,11 +2,12 @@ from telegram.ext import CallbackContext, MessageHandler, Filters
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 
 from .ban import not_banned_users
+from config import CHAT_ID
 
 
 @not_banned_users
 def message(update: Update, context: CallbackContext) -> None:
-    message_ = update.message.forward(-1001243271409)
+    message_ = update.message.forward(CHAT_ID)
 
     if not message_.forward_from:
         message_.reply_text(
