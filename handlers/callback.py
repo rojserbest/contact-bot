@@ -28,7 +28,7 @@ def set_lang(update, context):
     context.bot.send_message(
         update.effective_chat.id,
         get_string("start", context.bot_data.get(
-            chat_id_, {}
+            update.effective_chat.id, {}
         ).get(
             "lang",
             "en"
