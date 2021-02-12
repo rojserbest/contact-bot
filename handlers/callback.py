@@ -7,7 +7,7 @@ from strings import get_string, get_languages
 
 @not_banned_users
 def set_lang(update, context):
-    context.bot_data[update.effective_chat.id]["lang"] = update.callback_query.split(
+    context.bot_data[update.effective_chat.id]["lang"] = update.callback_query.data.split(
         "_")[-1]
     update.effective_message.delete()
 
