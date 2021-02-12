@@ -1,0 +1,6 @@
+{
+  "name": "English",
+  "start": "This is a bot for contacting Telegram Info. You can send your messages and when someone administrator sees it they will reply ASAP.\n\nYou can select another language below.",
+  "ban": "You have been banned.",
+  "unban": "You have been unbanned."
+}
