@@ -7,8 +7,9 @@ from strings import get_string, get_languages
 
 @not_banned_users
 def set_lang(update, context):
-    context.bot_data[update.effective_chat.id]["lang"] = update.callback_query.data.split(
-        "_")[-1]
+    context.bot_data[update.effective_chat.id] = {"lang": update.callback_query.data.split(
+        "_")[-1], **context.bot_data.get(update.effective_chat.id, {})}
+
     update.effective_message.delete()
 
     keyboard = []
