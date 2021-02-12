@@ -60,7 +60,7 @@ def unban(update, context):
 
 def not_banned_users(func):
     def wrapper(update, context):
-        if not db.is_banned(update.message.from_user.id):
+        if not db.is_banned(update.effective_user.id):
             return func(update, context)
     return wrapper
 
